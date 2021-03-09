@@ -127,7 +127,7 @@ export async function getSegmentsInYear(
       tracingOptions: updatedOptions.tracingOptions
     })) {
       const segmentTime = parseDateFromSegmentPath(item.name);
-      if ((startTime && segmentTime < startTime) || (endTime && segmentTime >= endTime)) {
+      if ((startTime && segmentTime < startTime) || (endTime && segmentTime > endTime)) {
         continue;
       }
       segments.push(item.name);

@@ -240,4 +240,13 @@ describe("Change Feed", async () => {
     const event2 = await changeFeed3.getChange();
     assert.equal(event2, 4);
   });
+
+  it("with continuation token at end of change feed", async () => {
+    const containerUri = "account.blob.core.windows.net";
+    const lastSegment = segmentsIn2020[segmentsIn2020.length - 1].name;
+    const token = `{\"CursorVersion\":1,\"UrlHost\":\"account.blob.core.windows.net\",\"EndTime\":null,\"CurrentSegmentCursor\":{\"SegmentPath\":\"${lastSegment}\"}}`;
+    (containerClientStub as any).url = containerUri;
+    const changeFeed = await changeFeedFactory.create(serviceClientStub as any, token);
+    assert.ok(changeFeed.hasNext());
+  });
 });

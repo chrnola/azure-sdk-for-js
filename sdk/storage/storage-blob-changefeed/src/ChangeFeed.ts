@@ -152,7 +152,7 @@ export class ChangeFeed {
       return false;
     }
 
-    return this.currentSegment.dateTime < this.end!;
+    return this.currentSegment.dateTime <= this.end!;
   }
 
   public async getChange(

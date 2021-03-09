@@ -179,7 +179,7 @@ describe("Change Feed", async () => {
     // no valid segment between start and end
     const changeFeed = await changeFeedFactory.create(serviceClientStub as any, undefined, {
       start: new Date(Date.UTC(2019, 2, 2, 21)),
-      end: new Date(Date.UTC(2019, 3, 3, 22))
+      end: new Date(Date.UTC(2019, 3, 3, 21))
     });
     assert.ok(!changeFeed.hasNext());
 
